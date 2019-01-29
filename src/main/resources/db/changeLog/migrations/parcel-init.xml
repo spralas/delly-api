@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="parcel-create-table" author="spralas">
+        <createTable tableName="PARCEL">
+            <column name="PARCEL_ID" type="bigint">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_PARCEL_PARCEL_ID"/>
+            </column>
+            <column name="USER_ID" type="bigint"/>
+            <column name="START_STREET" type="varchar(256)"/>
+            <column name="START_CITY" type="varchar(256)"/>
+            <column name="END_TIME" type="date"/>
+            <column name="END_STREET" type="varchar(256)"/>
+            <column name="END_CITY" type="varchar(256)"/>
+        </createTable>
+        <sql endDelimiter=";">
+            INSERT INTO PARCEL(PARCEL_ID,USER_ID,START_STREET, START_CITY, END_TIME, END_STREET, END_CITY) VALUES(1,1,'Ulica jorgovana','Zagreb',parsedatetime('17-09-2012 18:47:52.690', 'dd-MM-yyyy hh:mm:ss.SS'),'Zagrebačka ulica','Split');
+        </sql>
+        <addForeignKeyConstraint baseColumnNames="USER_ID"
+                                 baseTableName="PARCEL"
+                                 constraintName="fk_parcel_user_id"
+                                 deferrable="false"
+                                 initiallyDeferred="false"
+                                 onDelete="NO ACTION"
+                                 onUpdate="NO ACTION"
+                                 referencedColumnNames="USER_ID"
+                                 referencedTableName="D_USER"/>
+    </changeSet>
+</databaseChangeLog>

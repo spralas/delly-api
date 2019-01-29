@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+<changeSet id="trip-create-table" author="spralas">
+    <sql>CREATE TYPE currency_enum AS ENUM ('HRK','EUR')</sql>
+    <createTable tableName="TRIP">
+        <column name="TRIP_ID" type="bigint" autoIncrement="true">
+            <constraints nullable="false" primaryKey="true" primaryKeyName="PK_TRIP_TRIP_ID"/>
+        </column>
+        <column name="USER_ID" type="bigint"/>
+        <column name="VEHICLE_ID" type="bigint"/>
+        <column name="START_TIME" type="date"/>
+        <column name="END_TIME" type="date"/>
+        <column name="PRICE_PER_PARCEL" type="decimal(5, 2)"/>
+        <column name="CURRENCY" type="currency_enum"/>
+    </createTable>
+    <sql endDelimiter=";">
+        INSERT INTO TRIP(USER_ID,VEHICLE_ID,START_TIME,END_TIME,PRICE_PER_PARCEL,CURRENCY) VALUES(1,1,parsedatetime('17-09-2012 18:47:52.690', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('19-09-2012 18:47:52.690', 'dd-MM-yyyy hh:mm:ss.SS'), 19,'HRK');
+    </sql>
+    <addForeignKeyConstraint baseColumnNames="USER_ID"
+                             baseTableName="TRIP"
+                             constraintName="fk_trip_user_id"
+                             deferrable="false"
+                             initiallyDeferred="false"
+                             onDelete="NO ACTION"
+                             onUpdate="NO ACTION"
+                             referencedColumnNames="USER_ID"
+                             referencedTableName="D_USER"/>
+
+    <addForeignKeyConstraint baseColumnNames="VEHICLE_ID"
+                             baseTableName="TRIP"
+                             constraintName="fk_trip_vehicle_id"
+                             deferrable="false"
+                             initiallyDeferred="false"
+                             onDelete="NO ACTION"
+                             onUpdate="NO ACTION"
+                             referencedColumnNames="VEHICLE_ID"
+                             referencedTableName="VEHICLE"/>
+
+</changeSet>
+</databaseChangeLog>

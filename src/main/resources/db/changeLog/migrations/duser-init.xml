@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+<changeSet id="duser-create-table" author="spralas">
+    <sql>CREATE TYPE role_enum AS ENUM ('DRIVER','SENDER')</sql>
+    <createTable tableName="D_USER">
+        <column name="USER_ID" type="bigint" autoIncrement="true">
+            <constraints nullable="false" primaryKey="true" primaryKeyName="PK_D_USER_USER_ID"/>
+        </column>
+        <column name="FIRST_NAME" type="varchar(64)"/>
+        <column name="LAST_NAME" type="varchar(64)"/>
+        <column name="EMAIL" type="varchar(64)"/>
+        <column name="PHONE_NUMBER" type="varchar(64)"/>
+        <column name="STRIPE_CUSTOMER_ID" type="varchar(256)"/>
+        <column name="USERNAME" type="varchar(32)"/>
+        <column name="PASSWORD" type="varchar(256)"/>
+        <column name="ACTIVE" type="boolean"/>
+        <column name="ROLE" type="role_enum" />
+    </createTable>
+    <sql endDelimiter=";">
+        INSERT INTO D_USER(FIRST_NAME,LAST_NAME,EMAIL,PHONE_NUMBER,STRIPE_CUSTOMER_ID,USERNAME,PASSWORD,ACTIVE,ROLE) VALUES('Stanko','Pralas','stanko.pralas89@gmail.com','0977182985','SCID123','admin','nimda',true,'DRIVER');
+    </sql>
+</changeSet>
+</databaseChangeLog>

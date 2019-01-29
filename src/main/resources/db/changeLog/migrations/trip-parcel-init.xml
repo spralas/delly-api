@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="trip-parcel-create-table" author="spralas">
+        <createTable tableName="TRIP_PARCEL">
+            <column name="TRIP_PARCEL_ID" type="bigint">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_TRIP_PARCEL_TRIP_PARCEL_ID"/>
+            </column>
+            <column name="TRIP_ID" type="bigint"/>
+            <column name="USER_ID" type="bigint"/>
+        </createTable>
+        <sql endDelimiter=";">
+            INSERT INTO TRIP_PARCEL(TRIP_PARCEL_ID,TRIP_ID,USER_ID) VALUES(1,1,1);
+        </sql>
+
+        <addForeignKeyConstraint baseColumnNames="TRIP_ID"
+                                 baseTableName="TRIP_PARCEL"
+                                 constraintName="fk_trip_parcel_trip_id"
+                                 deferrable="false"
+                                 initiallyDeferred="false"
+                                 onDelete="NO ACTION"
+                                 onUpdate="NO ACTION"
+                                 referencedColumnNames="TRIP_ID"
+                                 referencedTableName="TRIP"/>
+
+        <addForeignKeyConstraint baseColumnNames="USER_ID"
+                                 baseTableName="TRIP_PARCEL"
+                                 constraintName="fk_trip_parcel_user_id"
+                                 deferrable="false"
+                                 initiallyDeferred="false"
+                                 onDelete="NO ACTION"
+                                 onUpdate="NO ACTION"
+                                 referencedColumnNames="USER_ID"
+                                 referencedTableName="D_USER"/>
+    </changeSet>
+</databaseChangeLog>
