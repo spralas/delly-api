@@ -6,7 +6,7 @@ import com.delly.DellyApp.model.User;
 /**
  * Interface for users.
  *
- * @author spralas 
+ * @author spralas
  */
 public interface UserService {
 
