@@ -17,9 +17,6 @@
         <column name="PRICE_PER_PARCEL" type="decimal(5, 2)"/>
         <column name="CURRENCY" type="currency_enum"/>
     </createTable>
-    <sql endDelimiter=";">
-        INSERT INTO TRIP(USER_ID,VEHICLE_ID,START_TIME,END_TIME,PRICE_PER_PARCEL,CURRENCY) VALUES(1,1,parsedatetime('17-09-2012 18:47:52.690', 'dd-MM-yyyy hh:mm:ss.SS'),parsedatetime('19-09-2012 18:47:52.690', 'dd-MM-yyyy hh:mm:ss.SS'), 19,'HRK');
-    </sql>
     <addForeignKeyConstraint baseColumnNames="USER_ID"
                              baseTableName="TRIP"
                              constraintName="fk_trip_user_id"

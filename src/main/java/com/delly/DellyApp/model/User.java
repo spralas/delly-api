@@ -40,6 +40,7 @@ public class User implements Serializable {
     @Column(name="ACTIVE", nullable = false)
     private boolean active;
 
-    @Column(name="ROLE", nullable = false)
+    @Enumerated(EnumType.STRING)
+    @Column(name = "ROLE")
     private Role role;
 }

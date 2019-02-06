@@ -3,6 +3,8 @@ package com.delly.DellyApp.service;
 import com.delly.DellyApp.dto.UserRequestDto;
 import com.delly.DellyApp.model.User;
 
+import java.util.List;
+
 /**
  * Interface for users.
  *
@@ -12,5 +14,9 @@ public interface UserService {
 
     User createNewUser(UserRequestDto newUser);
 
-    User findUser(Long id);
+    User findUserById(Long id);
+
+    User findUserByUserNameOrEmail(String userName, String email);
+
+    List<User> findAllUsers();
 }

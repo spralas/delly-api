@@ -12,8 +12,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+/**
+ * Implementation service of {@link UserService} interface.
+ */
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -45,8 +49,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUser(Long id) {
-        return userRepository.findOne(id);
+    public User findUserById(Long id) {
+        return userRepository.findUserById(id);
+    }
+
+    @Override
+    public User findUserByUserNameOrEmail(String userName, String email) {
+        return userRepository.findUserByUsernameOrEmail(userName, email);
+    }
+
+    @Override
+    public List<User> findAllUsers() {
+        return (List<User>) userRepository.findAll();
     }
 
     private Customer createStripeCustomer(UserRequestDto user) throws StripeException {

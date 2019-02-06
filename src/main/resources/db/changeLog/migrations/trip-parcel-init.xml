@@ -12,9 +12,6 @@
             <column name="TRIP_ID" type="bigint"/>
             <column name="USER_ID" type="bigint"/>
         </createTable>
-        <sql endDelimiter=";">
-            INSERT INTO TRIP_PARCEL(TRIP_PARCEL_ID,TRIP_ID,USER_ID) VALUES(1,1,1);
-        </sql>
 
         <addForeignKeyConstraint baseColumnNames="TRIP_ID"
                                  baseTableName="TRIP_PARCEL"

@@ -6,16 +6,13 @@
 
 <changeSet id="vehicle-create-table" author="spralas">
     <createTable tableName="VEHICLE">
-        <column name="VEHICLE_ID" type="bigint">
+        <column name="VEHICLE_ID" type="bigint" autoIncrement="true">
             <constraints nullable="false" primaryKey="true" primaryKeyName="PK_VEHICLE_VEHICLE_ID"/>
         </column>
         <column name="USER_ID" type="bigint"/>
         <column name="VEHICLE_NAME" type="varchar(64)"/>
         <column name="LICENCE_PLATE" type="varchar(256)"/>
     </createTable>
-    <sql endDelimiter=";">
-        INSERT INTO VEHICLE(VEHICLE_ID,USER_ID,VEHICLE_NAME, LICENCE_PLATE) VALUES(1,1,'Mercedes','ZG-1701-SP');
-    </sql>
     <addForeignKeyConstraint baseColumnNames="USER_ID"
                              baseTableName="VEHICLE"
                              constraintName="fk_vehicle_user_id"

@@ -1,9 +1,14 @@
 package com.delly.DellyApp.controllers;
 
 import com.delly.DellyApp.dto.UserRequestDto;
+import com.delly.DellyApp.enums.Role;
 import com.delly.DellyApp.model.User;
+import com.delly.DellyApp.model.Vehicle;
+import com.delly.DellyApp.service.EmailService;
 import com.delly.DellyApp.service.UserService;
+import com.delly.DellyApp.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,20 +23,43 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/users")
 public class UserController {
+    private static final String EMAIL_SUBJECT = "You are now Delly member. Thank you!";
+    private static final String EMAIL_TEXT = "Thank you for entering in Delly's world!";
 
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private EmailService emailService;
+
+    @Autowired
+    private VehicleService vehicleService;
+
     /**
-     * Create new user.
+     * Create new user and sends mail notification.
      *
      * @return ResponseEntity that contains status and inserted user.
      */
     @PostMapping("/create")
-    public ResponseEntity create(@RequestBody UserRequestDto user){
+    public ResponseEntity<String> create(@RequestBody UserRequestDto user){
+        if(userService.findUserByUserNameOrEmail(user.getUserName(), user.getEmail()) != null){
+            return new ResponseEntity<>("User is already registered.", HttpStatus.BAD_REQUEST);
+        }
         User userInserted = userService.createNewUser(user);
-        User insertedUser = userService.findUser(userInserted.getUserId());
 
-        return ResponseEntity.ok(insertedUser);
+        if(Role.DRIVER.equals(user.getRole())){
+           Vehicle vehicle = vehicleService.createNewVehicle(user);
+        }
+        User insertedUser = userService.findUserById(userInserted.getUserId());
+
+        if(insertedUser != null) {
+            try {
+                emailService.sendMail(insertedUser.getEmail(), EMAIL_SUBJECT, EMAIL_TEXT);
+            } catch(Exception e) {
+                return new ResponseEntity<>("Exception occured during mail sending.", HttpStatus.BAD_REQUEST);
+            }
+        }
+
+        return new ResponseEntity<>("New user has been created.", HttpStatus.OK);
     }
 }

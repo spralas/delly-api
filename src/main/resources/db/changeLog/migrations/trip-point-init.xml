@@ -15,9 +15,6 @@
             <column name="CITY" type="varchar(256)"/>
             <column name="TRIP_POINT_TYPE" type="trip_point_type"/>
         </createTable>
-        <sql endDelimiter=";">
-            INSERT INTO TRIP_POINT(TRIP_POINT_ID,TRIP_ID,STREET, CITY,TRIP_POINT_TYPE) VALUES(1,1,'Trpinjska ulica 5a','Zagreb','START_POINT');
-        </sql>
         <addForeignKeyConstraint baseColumnNames="TRIP_ID"
                                  baseTableName="TRIP_POINT"
                                  constraintName="fk_trip_point_trip_id"

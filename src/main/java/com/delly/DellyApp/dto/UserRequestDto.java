@@ -26,4 +26,8 @@ public class UserRequestDto {
     private Role role;
 
     private String stripeToken;
+
+    private String vehicleName;
+
+    private String licensePlate;
 }

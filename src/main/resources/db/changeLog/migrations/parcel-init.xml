@@ -16,9 +16,6 @@
             <column name="END_STREET" type="varchar(256)"/>
             <column name="END_CITY" type="varchar(256)"/>
         </createTable>
-        <sql endDelimiter=";">
-            INSERT INTO PARCEL(PARCEL_ID,USER_ID,START_STREET, START_CITY, END_TIME, END_STREET, END_CITY) VALUES(1,1,'Ulica jorgovana','Zagreb',parsedatetime('17-09-2012 18:47:52.690', 'dd-MM-yyyy hh:mm:ss.SS'),'Zagrebačka ulica','Split');
-        </sql>
         <addForeignKeyConstraint baseColumnNames="USER_ID"
                                  baseTableName="PARCEL"
                                  constraintName="fk_parcel_user_id"
