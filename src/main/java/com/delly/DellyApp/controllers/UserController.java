@@ -7,6 +7,7 @@ import com.delly.DellyApp.model.Vehicle;
 import com.delly.DellyApp.service.EmailService;
 import com.delly.DellyApp.service.UserService;
 import com.delly.DellyApp.service.VehicleService;
+import io.jsonwebtoken.lang.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,22 +42,24 @@ public class UserController {
      * @return ResponseEntity that contains status and inserted user.
      */
     @PostMapping("/create")
-    public ResponseEntity<String> create(@RequestBody UserRequestDto user){
-        if(userService.findUserByUserNameOrEmail(user.getUserName(), user.getEmail()) != null){
-            return new ResponseEntity<>("User is already registered.", HttpStatus.BAD_REQUEST);
+    public ResponseEntity<String> create(@RequestBody UserRequestDto user) {
+        if (userService.findUserByUserNameOrEmail(user.getUserName()) != null ||
+                userService.findUserByUserNameOrEmail(user.getEmail()) != null) {
+            return new ResponseEntity<>("User is already registered.", HttpStatus.METHOD_NOT_ALLOWED);
         }
         User userInserted = userService.createNewUser(user);
 
-        if(Role.DRIVER.equals(user.getRole())){
-           Vehicle vehicle = vehicleService.createNewVehicle(user);
+        if (Role.DRIVER.equals(user.getRole())) {
+            Vehicle vehicle = vehicleService.createNewVehicle(user);
+            Assert.notNull(vehicle);
         }
         User insertedUser = userService.findUserById(userInserted.getUserId());
 
-        if(insertedUser != null) {
+        if (insertedUser != null) {
             try {
                 emailService.sendMail(insertedUser.getEmail(), EMAIL_SUBJECT, EMAIL_TEXT);
-            } catch(Exception e) {
-                return new ResponseEntity<>("Exception occured during mail sending.", HttpStatus.BAD_REQUEST);
+            } catch (Exception e) {
+                return new ResponseEntity<>("Exception occurred during mail sending.", HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
 

@@ -34,6 +34,7 @@ public class UserServiceImpl implements UserService {
         user.setRole(newUser.getRole());
         user.setUsername(newUser.getUserName());
         user.setPassword(new BCryptPasswordEncoder().encode(newUser.getPassword()));
+        user.setActive(true);
 
         //create stripe customer
         Customer customer = null;
@@ -54,8 +55,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserByUserNameOrEmail(String userName, String email) {
-        return userRepository.findUserByUsernameOrEmail(userName, email);
+    public User findUserByUserNameOrEmail(String userData) {
+        return userRepository.findUserByUsernameOrEmail(userData);
     }
 
     @Override

@@ -1,10 +1,12 @@
 package com.delly.DellyApp.model;
 
+import com.delly.DellyApp.enums.Authority;
 import com.delly.DellyApp.enums.Role;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Data
@@ -43,4 +45,9 @@ public class User implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "ROLE")
     private Role role;
+
+    @ElementCollection(targetClass = Authority.class, fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    @Column(name = "AUTHORITY")
+    private Set<Authority> authorities;
 }

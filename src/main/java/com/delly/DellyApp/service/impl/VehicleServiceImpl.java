@@ -25,7 +25,7 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public Vehicle createNewVehicle(UserRequestDto user) {
-        User insertedUser = userService.findUserByUserNameOrEmail(user.getUserName(), user.getEmail());
+        User insertedUser = userService.findUserByUserNameOrEmail(user.getUserName());
         Vehicle vehicle = new Vehicle();
         vehicle.setUser(insertedUser);
         vehicle.setVehicleName(user.getVehicleName());

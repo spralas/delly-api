@@ -14,11 +14,18 @@
         <column name="LAST_NAME" type="varchar(64)"/>
         <column name="EMAIL" type="varchar(64)"/>
         <column name="PHONE_NUMBER" type="varchar(64)"/>
-        <column name="STRIPE_CUSTOMER_ID" type="varchar(256)"/>
+        <column name="STRIPE_CUSTOMER_ID" type="varchar(255)"/>
         <column name="USERNAME" type="varchar(32)"/>
-        <column name="PASSWORD" type="varchar(256)"/>
+        <column name="PASSWORD" type="varchar(255)"/>
         <column name="ACTIVE" type="boolean"/>
         <column name="ROLE" type="role_enum" />
     </createTable>
 </changeSet>
+
+    <changeSet author="spralas" id="addColumn-AUTHORITY">
+        <sql>CREATE TYPE authority_enum AS ENUM ('ADMIN','USER')</sql>
+        <addColumn tableName="D_USER">
+            <column name="AUTHORITY" type="authority_enum"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

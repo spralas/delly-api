@@ -10,5 +10,6 @@
         <include file="db/changelog/migrations/trip-init.xml"/>
         <include file="db/changelog/migrations/trip-parcel-init.xml"/>
         <include file="db/changelog/migrations/trip-point-init.xml"/>
+        <include file="db/changelog/migrations/user-authorities-init.xml"/>
 
 </databaseChangeLog>
