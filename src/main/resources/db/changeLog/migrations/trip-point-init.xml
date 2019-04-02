@@ -7,7 +7,7 @@
     <changeSet id="trip-point-create-table" author="spralas">
         <sql>CREATE TYPE trip_point_type AS ENUM ('START_POINT','MID_POINT','END_POINT')</sql>
         <createTable tableName="TRIP_POINT">
-            <column name="TRIP_POINT_ID" type="bigint">
+            <column name="TRIP_POINT_ID" type="bigint"  autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_TRIP_POINT_TRIP_POINT_ID"/>
             </column>
             <column name="TRIP_ID" type="bigint"/>
