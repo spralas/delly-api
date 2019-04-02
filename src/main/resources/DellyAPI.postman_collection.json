@@ -1,0 +1,226 @@
+{
+	"info": {
+		"_postman_id": "40334d3b-c628-4151-842d-47ebc387520a",
+		"name": "DellyAPI",
+		"description": "This collection contains delly-api requests.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"firstName\" : \"Stanko\",\n   \"lastName\" : \"Pralas\",\n   \"email\":\"stanko.pralas89@gmail.com\",\n   \"phoneNumber\":\"0977182988\",\n   \"userName\":\"stenky\",\n   \"password\":\"pass123\",\n   \"active\":\"true\",\n   \"role\":\"DRIVER\",\n   \"stripeToken\":\"tok_visa\",\n   \"vehicleName\":\"Mercedes\",\n   \"licensePlate\":\"ZG-3921-DN\",\n   \"authority\":[\"USER\"]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8083/delly-api/users/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"delly-api",
+						"users",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"stenky\",\n  \"password\": \"pass123\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8083/delly-api/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"delly-api",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create trip",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"user\" : {\r\n   \"userId\":\"1\"\r\n},\r\n\"vehicle\":{\r\n\t\"vehicleId\":\"1\",\r\n\t\"user\" : {\r\n\t\t \"userId\":\"1\"\r\n},\r\n\t\"vehicleName\":\"Mercedes\",\r\n\t\"licencePlate\":\"ZG1701SP\"\r\n\t\r\n},\r\n\"startTime\":\"2019-02-05T12:59:11.332\",\r\n\"endTime\":\"2019-02-07T12:59:11.332\",\r\n\"price\":10.25,\r\n\"currency\":\"EUR\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "http://localhost:8083/delly-api/trip/createTrip",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"delly-api",
+						"trip",
+						"createTrip"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create trip point",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n     {\n\t\"trip\":{\n\t\t\"tripId\":\"1\"\n\t},\n\t\"street\":\"Ulica ruža 12\",\n\t\"city\":\"Zagreb\",\n\t\"tripPointType\":\"START_POINT\"\n     },\n     {\n\t\"trip\":{\n\t\t\"tripId\":\"2\"\n\t},\n\t\"street\":\"Ulica ruža 15\",\n\t\"city\":\"Zagreb\",\n\t\"tripPointType\":\"END_POINT\"\n     }\n]\n"
+				},
+				"url": {
+					"raw": "http://localhost:8083/delly-api/trip/createTripPoint",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"delly-api",
+						"trip",
+						"createTripPoint"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create trip parcel",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"trip\":{\r\n\t\t\"tripId\":\"1\"\r\n\t},\r\n\"user\" : {\r\n   \"userId\":\"1\"\r\n}\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8083/delly-api/trip/createTripParcel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"delly-api",
+						"trip",
+						"createTripParcel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create parcel",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"user\" : {\r\n   \"userId\":\"1\"\r\n},\r\n\"startStreet\":\"Pocetna ulica 20d\",\r\n\"startCity\":\"Grude\",\r\n\"endTime\":\"2019-02-07T12:59:11.332\",\r\n\"endStreet\":\"Trpinjska ulica 5a\",\r\n\"endCity\":\"Zagreb\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8083/delly-api/parcel/createParcel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"delly-api",
+						"parcel",
+						"createParcel"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
