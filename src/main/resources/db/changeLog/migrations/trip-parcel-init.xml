@@ -11,6 +11,7 @@
             </column>
             <column name="TRIP_ID" type="bigint"/>
             <column name="USER_ID" type="bigint"/>
+            <column name="PARCEL_ID" type="bigint"/>
         </createTable>
 
         <addForeignKeyConstraint baseColumnNames="TRIP_ID"

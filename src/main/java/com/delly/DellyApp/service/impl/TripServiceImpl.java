@@ -68,6 +68,7 @@ public class TripServiceImpl implements TripService {
         TripParcel parcel = new TripParcel();
         parcel.setTrip(tripParcel.getTrip());
         parcel.setUser(tripParcel.getUser());
+        parcel.setParcel(tripParcel.getParcel());
 
         tripParcelRepository.save(parcel);
 

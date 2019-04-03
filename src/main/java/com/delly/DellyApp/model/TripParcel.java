@@ -1,6 +1,5 @@
 package com.delly.DellyApp.model;
 
-import com.delly.DellyApp.enums.TripPointType;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -22,5 +21,9 @@ public class TripParcel implements Serializable {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "USER_ID", nullable = false)
     private User user;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "PARCEL_ID", nullable = false)
+    private Parcel parcel;
 }
 
