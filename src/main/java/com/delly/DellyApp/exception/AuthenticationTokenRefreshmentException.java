@@ -2,8 +2,6 @@ package com.delly.DellyApp.exception;
 
 /**
  * Thrown if an authentication token cannot be refreshed.
- *
- * @author cassiomolin
  */
 public class AuthenticationTokenRefreshmentException extends RuntimeException {
 

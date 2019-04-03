@@ -1,8 +1,7 @@
 package com.delly.DellyApp.enums;
 
 /**
- * Currency enum.
- * @author spralas
+ * Currency that can be granted to a {@link com.delly.DellyApp.model.Trip}.
  */
 public enum Currency {
     EUR, HRK

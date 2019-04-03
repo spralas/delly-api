@@ -18,8 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Controller for users.
- *
- * @author spralas
  */
 @RestController
 @RequestMapping("/users")

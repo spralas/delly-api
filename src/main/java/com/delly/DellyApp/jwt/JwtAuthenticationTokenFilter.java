@@ -23,8 +23,6 @@ import java.io.IOException;
  * <pre>
  *     Authorization: Bearer xxx.yyy.zzz
  * </pre>
- *
- * @author cassiomolin
  */
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 

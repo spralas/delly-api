@@ -10,8 +10,6 @@ import java.util.Collection;
 
 /**
  * An {@link org.springframework.security.core.Authentication} implementation designed for presentation of a JWT token.
- *
- * @author spralas
  */
 public class JwtAuthenticationToken extends AbstractAuthenticationToken {
 

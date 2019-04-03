@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * JAX-RS resource class for authentication. Username and password are exchanged for an authentication token.
  *
- * @author spralas
  */
 @RestController
 @RequestMapping("/auth")

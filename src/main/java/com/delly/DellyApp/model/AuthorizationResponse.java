@@ -2,6 +2,9 @@ package com.delly.DellyApp.model;
 
 import lombok.Data;
 
+/**
+ * Authorization response.
+ */
 @Data
 public class AuthorizationResponse {
 

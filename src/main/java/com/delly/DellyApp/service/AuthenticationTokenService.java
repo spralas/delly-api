@@ -8,8 +8,6 @@ import java.util.Set;
 
 /**
  * Service which provides operations for authentication tokens.
- *
- * @author spralas
  */
 public interface AuthenticationTokenService {
 
@@ -18,7 +16,7 @@ public interface AuthenticationTokenService {
      *
      * @param username
      * @param authorities
-     * @return
+     * @return String.
      */
     String issueToken(String username, Set<Authority> authorities);
 
@@ -26,7 +24,7 @@ public interface AuthenticationTokenService {
      * Parse an authentication token.
      *
      * @param token
-     * @return
+     * @return Authentication token details.
      */
     AuthenticationTokenDetails parseToken(String token);
 

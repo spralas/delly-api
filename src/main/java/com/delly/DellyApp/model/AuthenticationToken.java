@@ -4,8 +4,6 @@ import lombok.Data;
 
 /**
  * API model for an authentication token.
- *
- * @author spralas
  */
 @Data
 public class AuthenticationToken {

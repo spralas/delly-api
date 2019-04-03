@@ -7,16 +7,37 @@ import java.util.List;
 
 /**
  * Interface for users.
- *
- * @author spralas
  */
 public interface UserService {
 
+    /**
+     * Creates new user.
+     *
+     * @param newUser New user.
+     * @return User.
+     */
     User createNewUser(UserRequestDto newUser);
 
+    /**
+     * Find user using id.
+     *
+     * @param id User id.
+     * @return User.
+     */
     User findUserById(Long id);
 
+    /**
+     * Find user using username or email.
+     *
+     * @param userData Username or email.
+     * @return User.
+     */
     User findUserByUserNameOrEmail(String userData);
 
+    /**
+     * Fetch all users.
+     *
+     * @return List of users.
+     */
     List<User> findAllUsers();
 }

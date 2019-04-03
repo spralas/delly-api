@@ -13,8 +13,6 @@ import org.springframework.stereotype.Component;
 
 /**
  * Authentication provider for JWT token-based authentication.
- *
- * @author spralas
  */
 @Component
 public class JwtAuthenticationProvider implements AuthenticationProvider {
