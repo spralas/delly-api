@@ -168,7 +168,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"trip\":{\r\n\t\t\"tripId\":\"1\"\r\n\t},\r\n\"user\" : {\r\n   \"userId\":\"1\"\r\n}\r\n}"
+					"raw": "{\r\n\"trip\":{\r\n\t\t\"tripId\":\"1\"\r\n\t},\r\n\"user\" : {\r\n   \"userId\":\"1\"\r\n},\r\n\"parcel\" : {\r\n   \"parcelId\":\"1\"\r\n}\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8083/delly-api/trip/createTripParcel",
